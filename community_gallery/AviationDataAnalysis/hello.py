@@ -27,15 +27,15 @@ year = slider(
 text("", size=.15)
 
 
-# df_year = df[df["Year"] == year]
+df_year = df[df["Year"] == year]
 
 # Passenger data visualization
 
-df_temp = df.groupby("city_cleaned", as_index=False).agg({
-    "ly_passengers": "mean",  
+df_temp = df_year.groupby("city_cleaned", as_index=False).agg({
+    "ly_passengers": "sum",  
     "longitude": "first",  
     "latitude": "first",
-    "Year": "first"
+    # "Year": "first"
 })
 
 df_temp["ly_passengers"] = df_temp["ly_passengers"] / 1_000_000
